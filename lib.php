@@ -29,11 +29,14 @@
  * @return true | null True if the feature is supported, null otherwise.
  */
 function demo_supports($feature) {
+    // Backward compatibility with pre M4.0 releases.
+    if (defined('FEATURE_MOD_PURPOSE') && $feature === FEATURE_MOD_PURPOSE) {
+        return MOD_PURPOSE_CONTENT;
+    }
+
     switch ($feature) {
         case FEATURE_MOD_INTRO:
             return true;
-        case FEATURE_MOD_PURPOSE:
-            return MOD_PURPOSE_CONTENT;
         default:
             return null;
     }
